@@ -71,7 +71,14 @@ const submitButton = document.getElementById("submit-player");
 submitButton.addEventListener("click", addNewPlayer);
 
 const removePlayer = async (playerId) => {
-  try {
+    try {
+        const remove = {
+            method: "DELETE",
+          };
+          const response = await fetch("${APIURL}/${players}/${id}", remove);
+          const player = await response.json();
+          console.log("See you next time");
+          return player;
   } catch (err) {
     console.error(
       `Whoops, trouble removing player #${playerId} from the roster!`,
