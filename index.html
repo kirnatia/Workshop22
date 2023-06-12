@@ -2,29 +2,42 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- import JavaScript -->
-  <script defer src="script.js"></script>
+    <!-- import CSS -->
+    <link rel="stylesheet" href="style.css">
 
-  <!-- import CSS -->
-  <link rel="stylesheet" href="styles.css">
-
-  <title>PuppyBowl</title>
+    <title>PuppyBowl</title>
 </head>
 
 <body>
 
-    <div> 
+    <div>
         <h1>Puppy Bowl Workshop</h1>
     </div>
-  <!-- form to add new players -->
-  <div id="new-player-form"></div>
+    <!-- form to add new players -->
+    <div id="new-player-form">
+        <label for="name">Name:</label><br><br>
+        <input type="text" id="name" /><br>
 
-  <!-- container for all players -->
-  <div id="all-players-container"></div>
+        <label for="breed">Breed:</label><br><br>
+        <input type="text" id="breed" /><br>
+
+        <label for="imageUrl">Image Url:</label><br><br>
+        <input type="text" id="imageUrlInput" /><br>
+
+        <button id="submit-player">Submit</button>
+
+
+    </div>
+
+    <!-- container for all players -->
+    <div id="all-players-container"></div>
+
+    <!-- import JavaScript -->
+    <script defer src="script.js"></script>
 
 </body>
 
