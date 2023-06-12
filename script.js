@@ -34,8 +34,8 @@ const fetchSinglePlayer = async (id) => {
   }
 };
 
-const addNewPlayer = async (newPlayer) => {
-  newPlayer.preventDefault();
+const addNewPlayer = async (newplayer) => {
+  newplayer.preventDefault();
 
   const nameInput = document.getElementById("name");
   const breedInput = document.getElementById("breed");
@@ -86,7 +86,14 @@ const removePlayer = async (playerId) => {
     );
   }
 };
-
+const getRandomColor = () => {
+    const min = 150;
+    const max = 256;
+    const red = Math.floor(Math.random() * (max - min) + min);
+    const green = Math.floor(Math.random() * (max - min) + min);
+    const blue = Math.floor(Math.random() * (max - min) + min);
+    return `rgb(${red}, ${green}, ${blue})`;
+  };
 /**
  * It takes an array of player objects, loops through them, and creates a string of HTML for each
  * player, then adds that string to a larger string of HTML that represents all the players.
@@ -107,8 +114,43 @@ const removePlayer = async (playerId) => {
  * @param playerList - an array of player objects
  * @returns the playerContainerHTML variable.
  */
-const renderAllPlayers = (playerList) => {
-  try {
+const renderAllPlayers = (players) => {
+    try {
+        playerContainer.innerHTML = "";
+        players.forEach((player) => {
+          const playerElement = document.createElement("div");
+          playerElement.classList.add("player");
+          const backgroundColor = getRandomColor();
+          playerElement.style.backgroundColor = backgroundColor;
+          playerElement.innerHTML = `
+            <h2><strong>Player Name:</strong> ${player.name}</h2>
+            <p><strong>Player Breed:</strong> ${player.breed}</p>
+            <p><strong>Player Id:</strong> ${player.id}</p>
+            <p><strong>Player Status:</strong> ${player.status}</p>
+            <img src="${player.imageUrl}" alt="Player Image">
+            
+       
+            <button class="details-button" data-id="${player.id}">See Details</button>
+            <button class="delete-button" data-id="${player.id}">Delete</button>
+          `;
+          playerContainer.appendChild(playerElement);
+    
+          const detailsButton = playerElement.querySelector(".details-button");
+          detailsButton.addEventListener("click", async (event) => {
+            const playerId = event.target.getAttribute("data-id");
+            const playerDetails = await fetchSinglePlayer(playerId);
+    
+            console.log(playerDetails);
+            // Handle displaying the player details as needed
+          });
+    
+          const deleteButton = playerElement.querySelector(".delete-button");
+          deleteButton.addEventListener("click", async (event) => {
+            const playerId = event.target.getAttribute("data-id");
+            removePlayer(playerId);
+            event.target.closest("div.player").remove();
+          });
+        });
   } catch (err) {
     console.error("Uh oh, trouble rendering players!", err);
   }
@@ -126,10 +168,11 @@ const renderNewPlayerForm = () => {
 };
 
 const init = async () => {
-  const players = await fetchAllPlayers();
-  renderAllPlayers(players);
-
-  renderNewPlayerForm();
-};
-
-init();
+    const players = await fetchAllPlayers();
+    console.log(players);
+    renderAllPlayers(players);
+  
+    renderNewPlayerForm();
+  };
+  
+  init();
