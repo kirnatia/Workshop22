@@ -5,32 +5,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <title>PuppyBowl</title>
     <!-- import CSS -->
     <link rel="stylesheet" href="style.css">
-
-    <title>PuppyBowl</title>
 </head>
 
 <body>
-
     <div>
         <h1>Puppy Bowl Workshop</h1>
     </div>
+
     <!-- form to add new players -->
     <div id="new-player-form">
-        <label for="name">Name:</label><br><br>
-        <input type="text" id="name" /><br>
+        <h2>Add New Player</h2>
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" required><br>
 
-        <label for="breed">Breed:</label><br><br>
-        <input type="text" id="breed" /><br>
+        <label for="breed">Breed:</label><br>
+        <input type="text" id="breed" required><br>
 
-        <label for="imageUrl">Image Url:</label><br><br>
-        <input type="text" id="imageUrlInput" /><br>
+        <label for="imageUrl">Image Url:</label><br>
+        <input type="text" id="imageUrlInput" required><br>
 
         <button id="submit-player">Submit</button>
-
-
     </div>
 
     <!-- container for all players -->
@@ -38,7 +35,6 @@
 
     <!-- import JavaScript -->
     <script defer src="script.js"></script>
-
 </body>
 
 </html>
